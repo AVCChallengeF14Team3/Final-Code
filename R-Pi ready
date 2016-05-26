@@ -12,8 +12,6 @@ extern "C" int set_motor( int motor, int dir, int speed );
 extern "C" char get_pixel(int row, int col, int colour);
 extern "C" take_picture();
 
-
-
 int main(){
 init(1);
 
@@ -27,7 +25,6 @@ printf("%s", message);
 //Sleep(0, );                       Might not be necessary, might need to be larger, need to TEST
 //return 0;                         If there is any problem opening the gate then this is where it stems from!
 // NETWORK CODE END
-
 
 // LINE FOLLOWING/ PHOTO ANALYSING CODE START
 int rightMotorSpeed = 0;
@@ -50,7 +47,6 @@ reversed = false;
 take_picture();
 
 int open_screen_stream();
-
 
 // FRESH CODE CHECKING FOR RED ie START OF QUAD 4
 for(int i = 0; i < 16; i++){

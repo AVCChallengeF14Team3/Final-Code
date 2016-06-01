@@ -32,7 +32,6 @@ int main(){
     int rightMotorSpeed = 0;
     int leftMotorSpeed = 0;
     int whiteValue=0;
-    int i = 0;
     int whiteOrBlack[15];   // White = 1, Black = 0
     int startOfWhite, endOfWhite;
     float centerOfWhite;
@@ -125,6 +124,13 @@ int main(){
             set_motor(1, 0);
             set_motor(2, 0);
             Sleep(0, 500000);
+        }
+        
+        else{  //this is for if reversed == true
+            float rightMotorSpeed = 15;
+            float leftMotorSpeed = 15;
+            set_motor(1, leftMotorSpeed);
+            set_motor(2, rightMotorSpeed);
         }
     } //this while loop will be broken only when red colour is detected. This signals the start of quadrant 4.
     

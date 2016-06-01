@@ -62,7 +62,7 @@ int main(){
     
         for(int i = 0; i < 16; i++){
             whiteValue = get_pixel(i*20, 120, 3);
-            if(whiteValue > 127){
+            if(whiteValue > 100){    //127 was too high - white values started at about 110
                 whiteOrBlack[i] = 1;
             }
         
@@ -112,10 +112,11 @@ int main(){
         }
         
         if(reversed == false){                            // If the robot has just reversed we dont want it to then go off the previous picture which must have had no white in it, therefore we want it to take another picture and try moving again
+            
             float centerofWhite = (startOfWhite + endOfWhite)/2;
             float errorValue = centerOfWhite - 7.5;           // 7.5 is the center, therefore when it is equal the error value will be zero
             float d = 0;                                      // We need to test this variable as different sizes in order to find a size that corrects/ prevents oscillation.
-    
+            //here we want to calculate PID values - simply adding on a number will do nothing to change the oscillations
             float rightMotorSpeed = 15 + errorValue + d;
             float leftMotorSpeed = 15 - errorValue + d;
             set_motor(1, leftMotorSpeed);
@@ -126,6 +127,7 @@ int main(){
             Sleep(0, 500000);
         }
         
+        //why are we setting these?
         else{  //this is for if reversed == true
             float rightMotorSpeed = 15;
             float leftMotorSpeed = 15;

@@ -36,8 +36,8 @@ int main(){
     int startOfWhite, endOfWhite;
     float centerOfWhite;
     
-    boolean reversed = false;
-    boolean redColorRecognised = false;        // This turning to true will signify it has reached the start of quadrant 4.
+    bool reversed = false;
+    bool redColorRecognised = false;        // This turning to true will signify it has reached the start of quadrant 4.
     
     //LINE FOLLOWING METHOD (QUADRANT ONE TO THREE)
     while(redColorRecognised == false){

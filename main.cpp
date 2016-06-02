@@ -12,7 +12,7 @@ extern "C" int set_motor( int motor, int speed );
 extern "C" int take_picture();
 extern "C" int open_screen_stream();
 extern "C" char get_pixel(int row, int col, int colour);
-extern "C" take_picture();
+
 
 int main(){
     init(1);

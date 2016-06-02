@@ -36,6 +36,10 @@ int main(){
     int startOfWhite, endOfWhite;
     float centerOfWhite;
     
+    //unsigned long lastTime;
+    //double pidOutput;
+    //double errorSum, lastError;
+    
     bool reversed = false;
     bool redColorRecognised = false;        // This turning to true will signify it has reached the start of quadrant 4.
     
@@ -114,11 +118,22 @@ int main(){
         if(reversed == false){                            // If the robot has just reversed we dont want it to then go off the previous picture which must have had no white in it, therefore we want it to take another picture and try moving again
             
             float centerofWhite = (startOfWhite + endOfWhite)/2;
-            float errorValue = centerOfWhite - 7.5;           // 7.5 is the center, therefore when it is equal the error value will be zero
-            float d = 0;                                      // We need to test this variable as different sizes in order to find a size that corrects/ prevents oscillation.
+            float errorValue = centerOfWhite - 7.5;           // 7.5 is the center, therefore when it is equal the error value will be zero                            // We need to test this variable as different sizes in order to find a size that corrects/ prevents oscillation.
             //here we want to calculate PID values - simply adding on a number will do nothing to change the oscillations
-            float rightMotorSpeed = 15 + errorValue + d;
-            float leftMotorSpeed = 15 - errorValue + d;
+            //unsigned long currentTime = //FIND OUT HOW TO DO THIS
+            //double timeChange = (double)lastTime - currentTime;
+            //errorSum += (errorValue*timeChange);
+            //double dError = (errorValue-lastError)/timeChange;
+            //pidOutput = kp*errorValue + ki*errorSum + kd*dError;
+            double kp=1;
+            //double ki=1;
+            //double kd=1;
+            double proportionalError = (double)errorValue*kp;
+            
+            //float rightMotorSpeed = 15 + errorValue*;
+            //float leftMotorSpeed = 15 - errorValue + d;
+            double leftMotorSpeed = (proportional_error/(160*1*kp))*255;
+            double rightMotorSpeed = -(proportional_signal/(160*1*kp))*255;
             set_motor(1, leftMotorSpeed);
             set_motor(2, rightMotorSpeed);
             Sleep(0, 500000);

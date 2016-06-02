@@ -27,12 +27,11 @@ int main(){
     //Sleep(0, );                       Might not be necessary, might need to be larger, need to TEST
     //return 0;                         If there is any problem opening the gate then this is where it stems from!
     // NETWORK CODE END
-    set_motor(1, 15);
-    set_motor(2, 15);
-    
+
     // LINE FOLLOWING/ PHOTO ANALYSING CODE START
-    int rightMotorSpeed = 0;
-    int leftMotorSpeed = 0;
+//    int rightMotorSpeed = 0;
+//    int leftMotorSpeed = 0;
+    const int SPEED = 30;
     int whiteValue=0;
     int whiteOrBlack[15];   // White = 1, Black = 0
     int startOfWhite, endOfWhite;
@@ -60,7 +59,7 @@ int main(){
         for(int i = 0; i < 16; i++){
             if(get_pixel(i*20, 120, 3) == RED VALUE){             // TEST FOR RED VALUE
                 redColorRecognised = true;
-                {break;}
+                break;
             }
         }
         // END OF FRESH CODE
@@ -80,42 +79,42 @@ int main(){
         //finds the start and end of white
         for(int i=0;i<15;i++){
             if( (whiteOrBlack[i]==0) && (whiteOrBlack[i+1]==1) ){
-                int startOfWhite = i;
+                startOfWhite = i;
             }
         
             if((whiteOrBlack[i] == 1) && (whiteOrBlack[i + 1] == 0)){ 
-                int endOfWhite = i;
+                endOfWhite = i;
             }
         }
         
         //in other words, if it cannot see a line in front of it
         if(startOfWhite == 0 && endOfWhite == 0){ //SET THESE VALUES EQUAL TO VALUES YOU RECIEVE WHEN NO LINE IS DETECTED.
-            set_motor(1, (-1*leftMotorSpeed) );
-            set_motor(2, (-1*rightMotorSpeed) );
-            Sleep(0, 500000);
-            set_motor(1, 0);
-            set_motor(2, 0);
-            reversed == true;
+            set_motor(1, -1*SPEED); //this is reversed
+            set_motor(2, SPEED); //reversed
+            Sleep(0, 5000);
+//            set_motor(1, 0);
+//            set_motor(2, 0);
+//            reversed = true;
         }
     
         //CHECK IF AT QUAD 3.
-        if(){
-            if((endOfWhite - startOfWhite) > ){                 // Testing required, we need to test the value of startofwhite and endofwhite at the intersection symbolising the start of quadrant 3
-                if(INTERSECTION WITH LEFT AND FORWARD, GO FORWARD){
+//        if(){
+//            if((endOfWhite - startOfWhite) > ){                 // Testing required, we need to test the value of startofwhite and endofwhite at the intersection symbolising the start of quadrant 3
+//                if(INTERSECTION WITH LEFT AND FORWARD, GO FORWARD){
          
-                }
+//                }
           
-                else if(INTERSECTION WITH LEFT, TURN LEFT){           // Value inside this statement will be of an intersection.
-                    set_motor(1, );                                   // We need multiple if statements here asking for values of white towards the upwards direction of the intersection, the left and the right, so that we know what kind of intersection it is.
-                    set_motor(2, );
-                }
+//                else if(INTERSECTION WITH LEFT, TURN LEFT){           // Value inside this statement will be of an intersection.
+//                    set_motor(1, );                                   // We need multiple if statements here asking for values of white towards the upwards direction of the intersection, the left and the right, so that we know what kind of intersection it is.
+//                    set_motor(2, );
+//                }
           
-                else if(INTERSCTION WITH NO LEFT AND RIGHT, TURN RIGHT){
-                    set_motor(1, );
-                    set_motor(2, );
-                }
-            }
-        }
+//                else if(INTERSCTION WITH NO LEFT AND RIGHT, TURN RIGHT){
+//                    set_motor(1, );
+//                    set_motor(2, );
+//                }
+//            }
+//        }
         
         if(reversed == false){                            // If the robot has just reversed we dont want it to then go off the previous picture which must have had no white in it, therefore we want it to take another picture and try moving again
             
@@ -134,23 +133,26 @@ int main(){
             
             //float rightMotorSpeed = 15 + errorValue*;
             //float leftMotorSpeed = 15 - errorValue + d;
-            double leftMotorSpeed = (proportional_error/(160*1*kp))*255;
-            double rightMotorSpeed = -(proportional_signal/(160*1*kp))*255;
-            set_motor(1, leftMotorSpeed);
-            set_motor(2, rightMotorSpeed);
-            Sleep(0, 500000);
-            set_motor(1, 0);
-            set_motor(2, 0);
-            Sleep(0, 500000);
+            //double leftMotorSpeed = (proportional_error/(160*1*kp))*255;
+            //double rightMotorSpeed = -(proportional_signal/(160*1*kp))*255;
+
+            int adjust = (int) proportionalError;
+
+            set_motor(1, SPEED+adjust);
+            set_motor(2, -1*(SPEED-adjust));
+//            Sleep(0, 500000);
+//            set_motor(1, 0);
+//            set_motor(2, 0);
+//            Sleep(0, 500000);
         }
         
         //why are we setting these?
-        else{  //this is for if reversed == true
-            float rightMotorSpeed = 15;
-            float leftMotorSpeed = 15;
-            set_motor(1, leftMotorSpeed);
-            set_motor(2, rightMotorSpeed);
-        }
+//        else{  //this is for if reversed == true
+//            float rightMotorSpeed = 15;
+//            float leftMotorSpeed = 15;
+//            set_motor(1, leftMotorSpeed);
+//            set_motor(2, rightMotorSpeed);
+//        }
     } //this while loop will be broken only when red colour is detected. This signals the start of quadrant 4.
     
     //CODE FOR QUADRANT 4

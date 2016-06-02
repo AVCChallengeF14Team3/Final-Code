@@ -83,8 +83,8 @@ int main(){
             }
         if((Q3 == true)){
             if(get_pixel(120, 190,3)>100 || (get_pixel(120,160,3))){
-                set_motor(1, );//FORWARD VALUE
-                set_motor(2, );//IDENTICAL VALUE TO ABOVE
+                set_motor(1, 70);//FORWARD VALUE
+                set_motor(2, -70);//IDENTICAL VALUE TO ABOVE
             }
             else if((get_pixel (70, 90, 3)> 100|| get_pixel (90,90,3)>100)  ) { //LEFT WHEN LEFT OR RIGHT, IF LEFT IS TRUE AND FORWARD ISNT WE AWAYS WANT IT TO GO LEFT 
                 set_motor(1, 0);// //LEFT VALUE 90 DEGREE TURN ON THE SPOT

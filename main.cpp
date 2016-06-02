@@ -75,8 +75,27 @@ int main(){
 
         }
     
-        //CHECK IF AT QUAD 3.
-        //Quadrant 3 code can go here if it exists, but we will ignore it for now
+            //CHECK IF AT QUAD 3.
+        bool Q3 = false;
+        
+        if((get_pixel(80, 90,3) && get_pixel(240, 90,3) ){ // need to check these pixels to see if they are what we get at an intersection
+                Q3 = true;
+            }
+        if((Q3 == true)){
+            if(get_pixel(120, 190,3)>100 || (get_pixel(120,160,3))){
+                set_motor(1, );//FORWARD VALUE
+                set_motor(2, );//IDENTICAL VALUE TO ABOVE
+            }
+            else if((get_pixel (70, 90, 3)> 100|| get_pixel (90,90,3)>100)  ) { //LEFT WHEN LEFT OR RIGHT, IF LEFT IS TRUE AND FORWARD ISNT WE AWAYS WANT IT TO GO LEFT 
+                set_motor(1, );// //LEFT VALUE 90 DEGREE TURN ON THE SPOT
+                set_motor(2, );
+            }
+            else if(get_pixel (240, 90, 3)> 100|| get_pixel (220,90,3)>100 ) {
+                set_motor(1, );//IF RIGHT IS THE ONLY OPTION, TURN RIGHT
+                set_motor(2, );
+            }
+            
+        }
         
         if(reversed == false){                            // If the robot has just reversed we dont want it to then go off the previous picture which must have had no white in it, therefore we want it to take another picture and try moving again
             

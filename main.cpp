@@ -27,6 +27,8 @@ int main(){
     //Sleep(0, );                       Might not be necessary, might need to be larger, need to TEST
     //return 0;                         If there is any problem opening the gate then this is where it stems from!
     // NETWORK CODE END
+    set_motor(1, 15);
+    set_motor(2, 15);
     
     // LINE FOLLOWING/ PHOTO ANALYSING CODE START
     int rightMotorSpeed = 0;
